@@ -35,7 +35,7 @@ h2,h3{
 
 .home-card{
     margin:25px auto;
-    width: 45%;
+    width: 95vh;
     height: max-content;
 }
 .profile-card{

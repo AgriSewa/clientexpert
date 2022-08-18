@@ -14,9 +14,9 @@ const AudioMeet = () => {
                 console.log(`Successfully joined a Room: ${room}`);
                 console.log(room)
                 // Log your Client's LocalParticipant in the Room
-                handleConnectedParticipant(room.localParticipant,"red");
-                room.participants.forEach((participant)=>handleConnectedParticipant(participant,"yellow"));
-                room.on("participantConnected", (participant)=>handleConnectedParticipant(participant,"yellow"));
+                handleConnectedParticipant(room.localParticipant,"orange","Expert");
+                room.participants.forEach((participant)=>handleConnectedParticipant(participant,"blue","Farmer"));
+                room.on("participantConnected", (participant)=>handleConnectedParticipant(participant,"blue","Farmer"));
                 room.localParticipant.videoTracks.forEach(publication => {
                     console.log(publication);
                     publication.track.disable();
@@ -52,20 +52,23 @@ const AudioMeet = () => {
         }).catch(err=>console.log("Error in connecting to Audio Call"))
       }, []);
 
-    const handleConnectedParticipant = (participant,color) => {
+    const handleConnectedParticipant = (participant,color,text) => {
         // create a div for this participant's tracks
         const container=document.getElementById('video-container');
         const participantDiv = document.createElement("div");
-        participantDiv.style.height=50;
-        participantDiv.style.width=50;
+        participantDiv.style.height='100px';
+        participantDiv.style.width='100px';
         participantDiv.style.margin="1rem";
+        participantDiv.innerHTML=text;
+        participantDiv.style.color="white";
+        participantDiv.style.paddingLeft="25px";
         participantDiv.style.backgroundColor=color;
         participantDiv.setAttribute("id", participant.identity);
         container.appendChild(participantDiv);
     
         // iterate through the participant's published tracks and
         // call `handleTrackPublication` on them
-        participant.tracks.forEach((trackPublication) => {
+        participant.audioTracks.forEach((trackPublication) => {
             handleTrackPublication(trackPublication, participant);
         });
     
