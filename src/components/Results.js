@@ -17,6 +17,7 @@ const Results=()=>{
                     'auth': `Bearer ${localStorage.getItem("jwt")}`,
                 }
             }).then(res=>{
+                console.log(res.data.results);
                 setResults(res.data.results)
             })
         }        
@@ -39,6 +40,7 @@ const Results=()=>{
                                 <img src={result.image} style={{height:'300px'}}/>
                             </div>
                             <div className='card-content' style={{textAlign:'center'}}>
+                                <h6><strong>Farmer Name:</strong> {result.farmerName}</h6>
                                 <h6><strong>Appointment Date:</strong> {date.toDateString()}</h6>
                                 <button className="btn waves-effect waves-light #00bcd4 cyan white-text text-lighten-3" onClick={()=>navigate(`/upload/solution/${result.id}`)}>Submit Advice</button>
                             </div>
