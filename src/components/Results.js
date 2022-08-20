@@ -26,15 +26,14 @@ const Results=()=>{
     return(
         <div className='gallery'>
             {
+                results==null && <h1>No previous interactions found</h1>
+            }
+            {
                 results &&
                 results.map((result)=>{
                     var date=new Date(result.book_date.split('T')[0]);
                     date.setDate(date.getDate()+1)
                     return(
-                        result.update_expert==0 
-                        && 
-                        (result.image!=='https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg')
-                        && 
                         <div className='card home-card' key={result.id}>                     
                             <div className='card-image'>
                                 <img src={result.image} style={{height:'300px'}}/>
