@@ -46,8 +46,8 @@ h2,h3{
 
 #toast-container{
     top:2% !important;
-    right:2% !important;
-    left:auto !important;
+    right:4% !important;
+    transform: translate(11%,3%) !important;
 }
 
 .material-icons:hover{

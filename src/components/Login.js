@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import M from "materialize-css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,6 +23,11 @@ const Login = () => {
           navigate(`/api/auth/verifyLoginExpert/${phone}`);
           setPhone("");
           console.log("Data submitted");
+        }else{
+          M.toast({
+            html: "Phone not registered",
+            classes: "#f44336 red",
+          }); 
         }
       })
       .catch((e) => {

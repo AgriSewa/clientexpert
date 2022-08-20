@@ -38,6 +38,11 @@ const ViewAppointment = () => {
   return (
     <>
       <section>
+          {
+              (appointmentdata==null) 
+              &&
+              <h1 style={{textAlign:"center"}}>No upcoming Appointments</h1> 
+          }
           <div className="container ">
             <div className="row">
               <div className="col">

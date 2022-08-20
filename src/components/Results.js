@@ -19,7 +19,7 @@ const Results=()=>{
             }).then(res=>{
                 console.log(res.data.results);
                 setResults(res.data.results)
-            })
+            });
         }        
     },[])
 
@@ -28,12 +28,12 @@ const Results=()=>{
             {
                 results &&
                 results.map((result)=>{
-                    var date=new Date(result.book_date.split('T')[0])
+                    var date=new Date(result.book_date.split('T')[0]);
                     date.setDate(date.getDate()+1)
                     return(
                         result.update_expert==0 
                         && 
-                        result.image!=='https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg'
+                        (result.image!=='https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg')
                         && 
                         <div className='card home-card' key={result.id}>                     
                             <div className='card-image'>
@@ -45,9 +45,10 @@ const Results=()=>{
                                 <button className="btn waves-effect waves-light #00bcd4 cyan white-text text-lighten-3" onClick={()=>navigate(`/upload/solution/${result.id}`)}>Submit Advice</button>
                             </div>
                         </div>
+                        
                     )
             })
-            }                       
+            }                    
         </div>
     )
 }
