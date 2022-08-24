@@ -5,6 +5,7 @@ import axios from "axios";
 const Results=()=>{
     const navigate = useNavigate();
     const [results,setResults]=useState([]);
+    const [appt,setAppt]=useState("");
     useEffect(()=>{
         if (!localStorage.getItem("user")) {
             navigate("/api/auth/loginExpert");
@@ -17,13 +18,15 @@ const Results=()=>{
                     'auth': `Bearer ${localStorage.getItem("jwt")}`,
                 }
             }).then(res=>{
-                console.log(res.data.results);
+                console.log(res.data);
                 setResults(res.data.results)
+                setAppt(res.data.completed);
             });
         }        
     },[])
 
     return(
+        <><div style={{right:'1vh',marginTop:'5px',marginBottom:'15px !important',marginRight:'5px',display:'flex',justifyContent:'flex-end'}}><h4><strong>Appointments Completed: {appt}</strong></h4></div>
         <div className='gallery'>
             {
                 results==null && <h1>No previous interactions found</h1>
@@ -49,6 +52,7 @@ const Results=()=>{
             })
             }                    
         </div>
+        </>
     )
 }
 
